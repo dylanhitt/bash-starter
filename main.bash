@@ -13,14 +13,12 @@ _main() {
     # select command to run
     string="hello"
     numbers=(1 2 3)
-
-    if  _util.array.contains 3 numbers; then 
+    
+    if  _util.array.contains 3 numbers; then
         echo "does contain"
     fi
-
-    Gre='\e[0;32m'
-    RCol='\e[0m' 
-    echo -e "${Gre}blue hello${RCol}"
+    
+    _util.text.special_print yellow bold "Hello red world"
 }
 
-_main 
+_main
