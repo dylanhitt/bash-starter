@@ -1,0 +1,32 @@
+config:
+
+tests:
+  # Array contains test
+  array contains pass:
+    command: bash -c 'source helper/test_helper.bash; test_array_contains 3'
+    config:
+      nodes:
+        - local
+    exit-code: 0
+
+  array contains fail:
+    command: bash -c 'source helper/test_helper.bash; test_array_contains 4'
+    config:
+      nodes:
+        - local
+    exit-code: 1
+
+  # Is array test
+  is array pass:
+    command: bash -c 'source helper/test_helper.bash; test_array_is_array_pass'
+    config:
+      nodes:
+        - local
+    exit-code: 0
+
+  is array fail:
+    command: bash -c 'source helper/test_helper.bash; test_array_is_array_fail'
+    config:
+      nodes:
+        - local
+    exit-code: 1

@@ -1,12 +1,22 @@
 #!/usr/bin/env bash
 
 #===  FUNCTION  ================================================================
+#          NAME:  log
+#     PARAMETER:  $1=text
+#   DESCRIPTION:  Prints standard log output
+#       EXAMPLE:  _util.log.log "Hello world"
+#===============================================================================
+_log() {
+    line=$1
+    printf "%s %s\n" "$(date +'%b %d %H:%M:%S')" "$line"
+}
+
+#===  FUNCTION  ================================================================
 #          NAME:  color_print
 #     PARAMETER:  $1=color, $2=emphasis, $3=text
 #   DESCRIPTION:  Prints string with desired color and emphasis
 #       EXAMPLE:  _util.array.color_print red "My awesome string"
 #===============================================================================
-
 _util.text.special_print() {
     local default_style='\e[0m'
     local color=$(_set_color ${1}); shift

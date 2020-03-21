@@ -14,7 +14,6 @@ _util.array.contains() {
     local test_element=$1
     local array_reference=$2[@]
     local test_array=("${!array_reference}")
-
     for __test_element in "${test_array[@]:-}"; do
         if [[ "${__test_element}" == "${1}" ]]; then
             return 0
@@ -32,9 +31,9 @@ _util.array.contains() {
 _util.array.is_array() {
     local array_name=$1
     if [[ "$(declare -p $array_name)" =~ "declare -a" ]]; then
-        return
+        return 0
     else
-        echo "The input provdided was not an array!"
+        _log "Input is not an array"
         exit 1
     fi
 }
