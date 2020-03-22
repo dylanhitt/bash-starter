@@ -7,10 +7,10 @@
 #     PARAMETER:  $1=value to check, $2=name reference to array
 #        RETURN:  new array with added value
 #   DESCRIPTION:  returns a new array with value added
-#       EXAMPLE:  _util.array.contains "$test_element" "array"
+#       EXAMPLE:  _array.contains "$test_element" "array"
 #===============================================================================
-_util.array.contains() {
-    _util.array.is_array ${2}
+_array.contains() {
+    array.is_array ${2}
     local test_element=$1
     local array_reference=$2[@]
     local test_array=("${!array_reference}")
@@ -28,7 +28,7 @@ _util.array.contains() {
 #        RETURN:  returns 0 if true 1 if false
 #   DESCRIPTION:  returns a new array with value added
 #===============================================================================
-_util.array.is_array() {
+_array.is_array() {
     local array_name=$1
     if [[ "$(declare -p $array_name)" =~ "declare -a" ]]; then
         return 0

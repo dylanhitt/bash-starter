@@ -9,23 +9,22 @@ source ../util/array.bash
 test_array_contains() {
     
     numbers=(1 2 3)
-    _util.array.contains $1 numbers
+    _array.contains $1 numbers
 }
 
 test_array_is_array_pass() {
     # pass
     numbers=(1 2 3)
-    _util.array.is_array numbers
+    _array.is_array numbers
     
 }
 
 test_array_is_array_fail() {
     # pass
     numbers="string"
-    _util.array.is_array numbers
+    _array.is_array numbers
     
 }
-
 
 myfunc() {
     local array_reference="$1[@]"

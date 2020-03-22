@@ -2,13 +2,45 @@
 
 #===  FUNCTION  ================================================================
 #          NAME:  log
-#     PARAMETER:  $1=text
-#   DESCRIPTION:  Prints standard log output
+#     PARAMETER:  $1=type, $2=text to log
+#   DESCRIPTION:  Prints standard log output and level
 #       EXAMPLE:  _util.log.log "Hello world"
 #===============================================================================
-_log() {
-    line=$1
-    printf "%s %s\n" "$(date +'%b %d %H:%M:%S')" "$line"
+_text.log() {
+    local log_level=$(_set_log_level $1); shift
+    local line=$@
+    
+    if [[ $log_level == "[]" ]]; then
+        err_message="Must provide a valid log level!\n"
+        options="Levels: INFO, WARN, DEBUG, ERROR\n"
+        example='Example: _text.log <level> "My awesome log"'
+        echo -e "$(_text.log ERROR "${err_message}${options}${example}")"
+        exit 1
+    fi
+    
+    echo -e  "$log_level $(date +'%b %d %H:%M:%S') $line"
+}
+
+_set_log_level() {
+    local level=$1
+    local return_level=""
+    
+    case $1 in
+        INFO)
+            return_level=$(_text.special_print white bold "INFO")
+        ;;
+        WARN)
+            return_level=$(_text.special_print yellow bold "WARN")
+        ;;
+        DEBUG)
+            return_level=$(_text.special_print cyan bold "DEBUG")
+        ;;
+        ERROR)
+            return_level=$(_text.special_print red bold "ERROR")
+        ;;
+    esac
+    
+    echo -e "[$return_level]"
 }
 
 #===  FUNCTION  ================================================================
@@ -17,7 +49,7 @@ _log() {
 #   DESCRIPTION:  Prints string with desired color and emphasis
 #       EXAMPLE:  _util.array.color_print red "My awesome string"
 #===============================================================================
-_util.text.special_print() {
+_text.special_print() {
     local default_style='\e[0m'
     local color=$(_set_color ${1}); shift
     local emphasis=$(_set_emphasis $2); shift
