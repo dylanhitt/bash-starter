@@ -2,7 +2,7 @@ config:
 
 tests:
   set color:
-    command: bash -c 'source ../util/text.bash; _set_color red'
+    command: bash -c 'source ../util/text.bash; __set_color red'
     config:
       nodes:
         - local
@@ -10,7 +10,7 @@ tests:
       exactly: "31"
 
   set emphasis:
-    command: bash -c 'source ../util/text.bash; _set_emphasis bold'
+    command: bash -c 'source ../util/text.bash; __set_emphasis bold'
     config:
       nodes:
         - local

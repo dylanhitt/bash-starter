@@ -11,13 +11,8 @@ _main() {
     # Parse options
     # set debug options
     # select command to run
-    numbers=(1 2 3)
+    _text.log "hello world"
     
-    if  _util.array.contains 3 numbers; then
-        echo "does contain"
-    fi
-    
-    _util.text.special_print yellow bold "Hello red world"
 }
 
 _main
