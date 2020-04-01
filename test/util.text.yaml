@@ -1,7 +1,7 @@
 config:
 
 tests:
-  set color:
+  set_color:
     command: bash -c 'source ../util/text.bash; _set_color red'
     config:
       nodes:
@@ -9,7 +9,7 @@ tests:
     stdout:
       exactly: "31"
 
-  set emphasis:
+  set_emphasis:
     command: bash -c 'source ../util/text.bash; _set_emphasis bold'
     config:
       nodes:
@@ -17,14 +17,14 @@ tests:
     stdout:
       exactly: "1"
 
-  log pass:
+  log_pass:
     command: bash -c 'source ../util/text.bash; _text.log WARN "Hello world"'
     config:
       nodes:
         - local
     stdout: WARN
 
-  log invalid level:
+  log_invalid_level:
     command: bash -c 'source ../util/text.bash; _text.log WAR "Hello1 world"'
     config:
       nodes:
