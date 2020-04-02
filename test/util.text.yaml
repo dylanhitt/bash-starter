@@ -1,0 +1,33 @@
+config:
+
+tests:
+  set_color:
+    command: bash -c 'source ../util/text.bash; _set_color red'
+    config:
+      nodes:
+        - local
+    stdout:
+      exactly: "31"
+
+  set_emphasis:
+    command: bash -c 'source ../util/text.bash; _set_emphasis bold'
+    config:
+      nodes:
+        - local
+    stdout:
+      exactly: "1"
+
+  log_pass:
+    command: bash -c 'source ../util/text.bash; _text.log WARN "Hello world"'
+    config:
+      nodes:
+        - local
+    stdout: WARN
+
+  log_invalid_level:
+    command: bash -c 'source ../util/text.bash; _text.log WAR "Hello1 world"'
+    config:
+      nodes:
+        - local
+    stdout: ERROR
+    exit-code: 1
